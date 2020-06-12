@@ -2,15 +2,20 @@ from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 
 from . import views
+from .views.advertisements import AdvertisementList, AdvertisementDetails
+from .views.caregory import CategoryList
+from .views.image import Image
+from .views.users import UserList, UserDetails
 
 urlpatterns = [
-    path('users/', views.UserList.as_view()),
-    path('users/<int:pk>', views.UserDetails.as_view()),
+    path('users/', UserList.as_view()),
+    path('users/<int:pk>', UserDetails.as_view()),
     path('advertisements/',
-         views.AdvertisementList.as_view()),
+         AdvertisementList.as_view()),
     path('advertisements/<int:pk>/',
-         views.AdvertisementDetails.as_view(),
+         AdvertisementDetails.as_view(),
          name='advertisement-details'),
     path('auth/get_token/', obtain_auth_token),
-    path('categories/', views.CategoryList.as_view())
+    path('categories/', CategoryList.as_view()),
+    path('media/<str:name>/', Image.as_view())
 ]

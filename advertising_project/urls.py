@@ -18,11 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('app.urls')),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/', views.obtain_auth_token),
     # path('', RedirectView.as_view(url='api/', permanent=True)),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

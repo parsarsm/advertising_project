@@ -18,45 +18,15 @@ class UserProfile(models.Model):
     phone_number = models.CharField(max_length=15)
 
 
-class Advertisement(models.Model):
-    # Fields
-    title = models.TextField()
-    owner = models.ForeignKey('auth.User', related_name='advertisements', on_delete=models.CASCADE)
-    date1 = models.DateTimeField(null=True, blank=True)
-    date2 = models.DateTimeField(null=True, blank=True)
-
-
 class Category(models.Model):
-    parent_category = models.ForeignKey('self', on_delete=models.SET_NULL,blank=True, null=True, related_name='subcategories')
+    parent_category = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True,
+                                        related_name='subcategories')
     name = models.CharField(max_length=200)
-    # description = models.CharField(max_length=500, null=True,default='')
 
 
-# class Location():
-#     pass
-
-# class Category(models.Model):
-#     # Fields
-#     name = models.CharField(max_length=30)
-#     parent_category = models.ForeignKey('Category', on_delete=models.SET_NULL, blank=True, null=True)
-#
-#     def display_parent_category(self):
-#         if self.parent_category is None:
-#             return 'root'
-#
-#         now = self.parent_category
-#         temp = f'{now.name}'
-#         while True:
-#             p = now.parent_category
-#             if p is None:
-#                 temp += f' <- root'
-#                 break
-#             else:
-#                 temp += f' <- {p.name}'
-#                 now = now.parent_category
-#
-#         a = temp.split(' <- ')
-#         a.reverse()
-#         return '  >  '.join(a)
-#
-#     display_parent_category.short_description = 'parent_category'
+class Advertisement(models.Model):
+    title = models.TextField()
+    description = models.TextField()
+    owner = models.ForeignKey('auth.User', related_name='advertisements', on_delete=models.CASCADE)
+    image = models.ImageField()
+    category = models.ForeignKey(Category, related_name='advertisements', on_delete=models.CASCADE)

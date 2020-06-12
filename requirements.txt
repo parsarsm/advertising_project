@@ -1,2 +1,6 @@
 django>3
 djangorestframework
+PIL
+Pillow
+django-nose
+coverage
