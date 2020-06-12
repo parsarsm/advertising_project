@@ -1,9 +1,8 @@
 version: '3'
 
 services:
-        back:
+        django-back:
                 build: .
-                #command: python manage.py runserver 0.0.0.0:8000
                 volumes:
                         - .:/app
                 ports:
