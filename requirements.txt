@@ -1,6 +1,5 @@
-django>3
-djangorestframework
-PIL
-Pillow
-django-nose
-coverage
+django == 3.0.7
+djangorestframework ==3.11.0
+Pillow == 7.1.2
+django-nose == 1.4.6
+coverage == 5.1
