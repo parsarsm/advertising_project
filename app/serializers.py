@@ -9,11 +9,24 @@ from rest_framework.fields import CurrentUserDefault
 from app.models import Advertisement, UserProfile, Category
 
 
+class UserAdsSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+
 class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
-        fields = ('title', 'description', 'owner', 'category', 'image',)
-        extra_kwargs = {'owner': {'read_only': True}}
+        fields = ('title', 'description', 'owner', 'category', 'image', 'active')
+        extra_kwargs = {
+            'owner': {'read_only': True},
+            'active': {'read_only': True}
+        }
 
     def save(self, **kwargs):
         kwargs['owner'] = User.objects.get_by_natural_key(self.context['request'].user)
@@ -66,4 +79,3 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = super(CategorySerializer, self).get_fields()
         fields['subcategories'] = CategorySerializer(many=True)
         return fields
-

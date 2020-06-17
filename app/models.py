@@ -28,5 +28,6 @@ class Advertisement(models.Model):
     title = models.TextField()
     description = models.TextField()
     owner = models.ForeignKey('auth.User', related_name='advertisements', on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(null=True,blank=True)
     category = models.ForeignKey(Category, related_name='advertisements', on_delete=models.CASCADE)
+    active = models.BooleanField(default=False)
