@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
 
-from app.models import Category
-from app.serializers import CategorySerializer
+from app.models.category import Category
+from app.serializers.category import CategorySerializer
 
 
 class CategoryList(generics.ListCreateAPIView):

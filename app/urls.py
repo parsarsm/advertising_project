@@ -5,6 +5,7 @@ from . import views
 from .views.advertisements import AdvertisementList, AdvertisementDetails
 from .views.category import CategoryList
 from .views.image import Image
+from .views.search import AdvertisementListSearch
 from .views.userAds import UserAds
 from .views.users import UserList, UserDetails
 
@@ -19,5 +20,6 @@ urlpatterns = [
     path('auth/get_token/', obtain_auth_token),
     path('categories/', CategoryList.as_view()),
     path('media/<str:name>/', Image.as_view()),
-    path('user-ads/', UserAds.as_view())
+    path('user-ads/', UserAds.as_view()),
+    path('search/', AdvertisementListSearch.as_view())
 ]

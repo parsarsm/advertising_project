@@ -9,7 +9,8 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 
-from app.models import Category, UserProfile
+from app.models.category import Category
+from app.models.userProfile import UserProfile
 
 
 class totalTest(TestCase):
@@ -91,4 +92,3 @@ class totalTest(TestCase):
             '/api/advertisements/'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-

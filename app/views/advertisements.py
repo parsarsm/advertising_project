@@ -1,13 +1,14 @@
 from rest_framework import permissions, generics
 from rest_framework.response import Response
 
-from app.models import Advertisement
-from app.serializers import AdvertisementSerializer
+from app.models.advertisement import Advertisement
+from app.serializers.advertisement import AdvertisementSerializer
 
 
 class AdvertisementList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Advertisement.objects.all()
+    # queryset = Advertisement.objects.all()
+    queryset = Advertisement.objects.filter(active=True)
     serializer_class = AdvertisementSerializer
 
     def get(self, request, *args, **kwargs):

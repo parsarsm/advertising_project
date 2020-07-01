@@ -1,9 +1,11 @@
 from django.contrib import admin
 
-from app.models import Category, Advertisement
-
+from app.models.advertisement import Advertisement
+from app.models.category import Category
 
 admin.site.register(Category)
+
+
 # admin.site.register(Advertisement)
 
 # @admin.register(Category)
